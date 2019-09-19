@@ -66,7 +66,7 @@ app.put('/api/todos/:id', function (request, response, next) {
     if (!itemId) {
         return response.status(404).send('The item you entered can not be found!')
     }
-    itemId.id = parseInt(request.body.id)
+    itemId.todo = request.body.todo//parseInt(request.body.id)
     response.send(itemId)
 })
 
