@@ -22,7 +22,7 @@ var todoList = [
 
 // Home page
 app.get('/', function (request, response, next) {
-    response.send(request.route)
+    response.send('Visit localhost:3000/api/todos for my todo list')
 })
 // GET /api/todos
 app.get('/api/todos', function (request, response, next) {
@@ -36,7 +36,7 @@ app.get('/api/todos/:id', function (request, response, next) {
         return item.id === parseInt(request.params.id) // must convert to string becuase comparing number to string
     })
     if (!itemId) {
-        response.status(404).send('The item you entered can not be found!')
+        return response.status(404).send('The item you entered can not be found!')
     }
     // console.log(request.params)
     response.send(itemId)
@@ -45,6 +45,7 @@ app.get('/api/todos/:id', function (request, response, next) {
 // POST /api/todos
 app.post('/api/todos', function (request, response, next) {
     // we are manually typing the item below becuase we dont have a server yet
+    // the new key/value is included in the body of the request
     const newItem = {
         id: todoList.length + 1,
         todo: request.body.todo // this utilizes the request body which is in JSON format with a key of todo
@@ -71,7 +72,17 @@ app.put('/api/todos/:id', function (request, response, next) {
 })
 
 // DELETE /api/todos/:id
-
+app.delete('/api/todos/:id', function (request, response, next) {
+    const itemId = todoList.find(function (item) {
+        return item.id === parseInt(request.params.id)
+    })
+    if (!itemId) {
+        return response.status(404).send('The item you entered can not be found!')
+    }
+    const index = todoList.indexOf(itemId)
+    todoList.splice(index, 1)
+    response.send(itemId)
+})
 
 // LISTEN port 3000
 app.listen(3000, function(){
