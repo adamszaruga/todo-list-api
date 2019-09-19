@@ -11,6 +11,7 @@ var todoList = [
         todo: "Implement a REST API"
     }
 ];
+
 // Home page
 app.get('/', function (request, response, next) {
     response.send('What up')
@@ -31,7 +32,7 @@ app.get('/api/todos/:id', function (request, response, next) {
 })
 // POST /api/todos
 app.post('/api/todos', function (request, response, next) {
-    
+    response.send('You added an item')
 })
 // PUT /api/todos/:id
 
