@@ -20,7 +20,7 @@ var todoList = [
     }
 ];
 
-// Home page
+// GET /
 app.get('/', function (request, response, next) {
     response.send('Visit localhost:3000/api/todos for my todo list')
 })
@@ -51,7 +51,7 @@ app.post('/api/todos', function (request, response, next) {
         todo: request.body.todo // this utilizes the request body which is in JSON format with a key of todo
     }
     todoList.push(newItem) // push the new item to the existing list
-    response.send(newItem) // send the new item with id and todo in JSON format
+    response.send(todoList) // send the new item with id and todo in JSON format
 })
 // PUT /api/todos/:id
 app.put('/api/todos/:id', function (request, response, next) {
@@ -68,7 +68,7 @@ app.put('/api/todos/:id', function (request, response, next) {
         return response.status(404).send('The item you entered can not be found!')
     }
     itemId.todo = request.body.todo//parseInt(request.body.id)
-    response.send(itemId)
+    response.send(todoList)
 })
 
 // DELETE /api/todos/:id
