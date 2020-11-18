@@ -13,8 +13,14 @@ router.get('/:id', controller.findOne)
 
 // POST /api/todos
 
+router.post('/', controller.create)
+
 // PUT /api/todos/:id
 
+router.put('/:id', controller.update)
+
 // DELETE /api/todos/:id
+
+router.delete('/:id', controller.delete)
 
 module.exports = router;
