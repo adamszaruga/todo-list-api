@@ -1,7 +1,7 @@
 {
   "name": "todo-list-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "simple todo list api",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,6 +11,15 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "ejs": "^3.1.5",
     "express": "^4.16.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jnutterdev/todo-list-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jnutterdev/todo-list-api/issues"
+  },
+  "homepage": "https://github.com/jnutterdev/todo-list-api#readme"
 }
