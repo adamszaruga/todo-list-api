@@ -1,27 +1,41 @@
+// default express server stuff
 var express = require('express');
-var bodyParser = require('body-parser');
-
 var app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-var todoList = [
-    {
-        id: 1,
-        todo: "Implement a REST API"
-    }
-];
+// all the api variables
 
-// GET /api/todos
 
-// GET /api/todos/:id
+const todoRoutes = require('./routes')
 
-// POST /api/todos
 
-// PUT /api/todos/:id
 
-// DELETE /api/todos/:id
 
-app.listen(3000, function(){
-    console.log('Todo List API is now listening on port 3000...');
+
+
+
+
+
+
+
+
+
+app.use((req, res, next) => {
+    console.log(`Request received: ${req.method} ${req.path}`)
+    next();
+})
+
+
+
+// returns all todo list items
+app.use('/api/todos', todoRoutes);
+
+app.get('*', (req, res) => {
+    res.status(404).send('Not found');
+})
+
+// starts up server
+app.listen(3000, function() {
+    console.log('Todo List API is now listening on port localhost:3000...');
 })
